@@ -11,8 +11,6 @@ import org.mtr.mapping.mapper.EntityHelper;
 import org.mtr.mod.InitClient;
 import org.mtr.mod.KeyBindings;
 import org.mtr.mod.generated.lang.TranslationProvider;
-import org.mtr.mod.item.ItemDepotDriverKey;
-import org.mtr.mod.item.ItemDriverKey;
 import org.mtr.mod.packet.PacketUpdateVehicleRidingEntities;
 import org.mtr.mod.render.PositionAndRotation;
 import org.mtr.mod.render.RenderVehicleHelper;
@@ -58,7 +56,7 @@ public class VehicleRidingMovement {
 
 	public static void tick() {
 		final MinecraftClient minecraftClient = MinecraftClient.getInstance();
-		final ItemDriverKey driverKey = getValidHoldingKey(ridingDepotId);
+		final boolean isHoldingDriverKeyNew = false;
 
 		if (ridingVehicleCooldown < RIDING_COOLDOWN && shiftHoldingTicks < SHIFT_ACTIVATE_TICKS) {
 			ridingVehicleCooldown++;
@@ -76,10 +74,10 @@ public class VehicleRidingMovement {
 		}
 
 		final boolean isHoldingDriverKeyNew = driverKey != null;
-		pressingAccelerateTicks = isHoldingDriverKeyNew && driverKey.canDrive && KeyBindings.TRAIN_ACCELERATE.isPressed() ? pressingAccelerateTicks + 1 : 0;
-		pressingBrakeTicks = isHoldingDriverKeyNew && driverKey.canDrive && KeyBindings.TRAIN_BRAKE.isPressed() ? pressingBrakeTicks + 1 : 0;
-		pressingDoorsTicks = isHoldingDriverKeyNew && driverKey.canOpenDoors && KeyBindings.TRAIN_TOGGLE_DOORS.isPressed() ? pressingDoorsTicks + 1 : 0;
-		pressingAtoTicks = isHoldingDriverKeyNew && driverKey.canDrive && KeyBindings.TRAIN_TOGGLE_DOORS.isPressed() ? pressingAtoTicks + 1 : 0;
+		pressingAccelerateTicks = isHoldingDriverKeyNew && KeyBindings.TRAIN_ACCELERATE.isPressed() ? pressingAccelerateTicks + 1 : 0;
+		pressingBrakeTicks = isHoldingDriverKeyNew && KeyBindings.TRAIN_BRAKE.isPressed() ? pressingBrakeTicks + 1 : 0;
+		pressingDoorsTicks = isHoldingDriverKeyNew && KeyBindings.TRAIN_TOGGLE_DOORS.isPressed() ? pressingDoorsTicks + 1 : 0;
+		pressingAtoTicks = isHoldingDriverKeyNew && KeyBindings.TRAIN_TOGGLE_DOORS.isPressed() ? pressingAtoTicks + 1 : 0;
 
 		if (sendPositionUpdateTime > 0 && sendPositionUpdateTime <= System.currentTimeMillis() || isHoldingDriverKeyNew != isHoldingDriverKey || pressingAccelerateTicks == 1 || pressingBrakeTicks == 1 || pressingDoorsTicks == 1 || pressingAtoTicks == 1 || doorOverrideTicks == 1) {
 			isHoldingDriverKey = isHoldingDriverKeyNew;
