@@ -4,7 +4,6 @@ import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.ItemExtension;
 import org.mtr.mod.Blocks;
 import org.mtr.mod.block.BlockPSDAPGBase;
-import org.mtr.mod.block.BlockPSDTop;
 import org.mtr.mod.block.IBlock;
 import org.mtr.mod.block.TripleHorizontalBlock;
 import org.mtr.mod.generated.lang.TranslationProvider;
@@ -51,10 +50,6 @@ public class ItemPSDAPGBase extends ItemExtension implements IBlock {
 					world.setBlockState(newPos.up(y), state.with(new Property<>(SIDE_EXTENDED.data), EnumSide.SINGLE));
 				}
 			}
-
-			if (type.isPSD) {
-				world.setBlockState(newPos.up(2), BlockPSDTop.getActualState(WorldAccess.cast(world), newPos.up(2)));
-			}
 		}
 
 		context.getStack().decrement(1);
@@ -68,33 +63,6 @@ public class ItemPSDAPGBase extends ItemExtension implements IBlock {
 
 	private BlockState getBlockStateFromItem() {
 		switch (type) {
-			case PSD_1:
-				switch (item) {
-					case PSD_APG_DOOR:
-						return Blocks.PSD_DOOR_1.get().getDefaultState();
-					case PSD_APG_GLASS:
-						return Blocks.PSD_GLASS_1.get().getDefaultState();
-					case PSD_APG_GLASS_END:
-						return Blocks.PSD_GLASS_END_1.get().getDefaultState();
-				}
-			case PSD_2:
-				switch (item) {
-					case PSD_APG_DOOR:
-						return Blocks.PSD_DOOR_2.get().getDefaultState();
-					case PSD_APG_GLASS:
-						return Blocks.PSD_GLASS_2.get().getDefaultState();
-					case PSD_APG_GLASS_END:
-						return Blocks.PSD_GLASS_END_2.get().getDefaultState();
-				}
-			case APG:
-				switch (item) {
-					case PSD_APG_DOOR:
-						return Blocks.APG_DOOR.get().getDefaultState();
-					case PSD_APG_GLASS:
-						return Blocks.APG_GLASS.get().getDefaultState();
-					case PSD_APG_GLASS_END:
-						return Blocks.APG_GLASS_END.get().getDefaultState();
-				}
 			case LIFT_DOOR_1:
 				return Blocks.LIFT_DOOR_EVEN_1.get().getDefaultState();
 			case LIFT_DOOR_ODD_1:
@@ -131,9 +99,6 @@ public class ItemPSDAPGBase extends ItemExtension implements IBlock {
 	}
 
 	public enum EnumPSDAPGType {
-		PSD_1(true, false, false),
-		PSD_2(true, false, false),
-		APG(false, false, false),
 		LIFT_DOOR_1(false, false, true),
 		LIFT_DOOR_ODD_1(false, true, true);
 
@@ -150,9 +115,7 @@ public class ItemPSDAPGBase extends ItemExtension implements IBlock {
 
 	public enum EnumPSDAPGItem implements StringIdentifiable {
 
-		PSD_APG_DOOR(TranslationProvider.TOOLTIP_MTR_PSD_APG_DOOR, "psd_apg_door", true),
-		PSD_APG_GLASS(TranslationProvider.TOOLTIP_MTR_PSD_APG_GLASS, "psd_apg_glass", false),
-		PSD_APG_GLASS_END(TranslationProvider.TOOLTIP_MTR_PSD_APG_GLASS_END, "psd_apg_glass_end", false);
+		PSD_APG_DOOR(TranslationProvider.TOOLTIP_MTR_PSD_APG_DOOR, "psd_apg_door", true);
 
 		public final TranslationProvider.TranslationHolder translationKey;
 		private final String name;
