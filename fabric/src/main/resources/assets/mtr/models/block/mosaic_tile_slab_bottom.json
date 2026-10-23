@@ -1,8 +1,0 @@
-{
-	"parent": "block/slab",
-	"textures": {
-		"bottom": "mtr:block/mosaic_tile",
-		"top": "mtr:block/mosaic_tile",
-		"side": "mtr:block/mosaic_tile"
-	}
-}
