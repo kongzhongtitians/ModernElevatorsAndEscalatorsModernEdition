@@ -294,30 +294,6 @@ public class VehicleRidingMovement {
 		}
 	}
 
-	/**
-	 * @param depotId the {@link org.mtr.core.data.Depot} ID
-	 * @return the driver key item that is valid for the depot ID (either a matching key or the {@link org.mtr.mod.item.ItemCreativeDriverKey})
-	 */
-	@Nullable
-	public static ItemDriverKey getValidHoldingKey(long depotId) {
-		final ClientPlayerEntity clientPlayerEntity = MinecraftClient.getInstance().getPlayerMapped();
-		if (clientPlayerEntity != null) {
-			final ItemStack itemStack1 = clientPlayerEntity.getMainHandStack();
-			final Item item1 = itemStack1.getItem();
-			if (item1.data instanceof ItemDriverKey) {
-				return ItemDepotDriverKey.isCreativeDriverKeyOrMatchesDepot(itemStack1, depotId) ? (ItemDriverKey) item1.data : null;
-			}
-
-			final ItemStack itemStack2 = clientPlayerEntity.getOffHandStack();
-			final Item item2 = itemStack2.getItem();
-			if (item2.data instanceof ItemDriverKey) {
-				return ItemDepotDriverKey.isCreativeDriverKeyOrMatchesDepot(itemStack2, depotId) ? (ItemDriverKey) item2.data : null;
-			}
-		}
-
-		return null;
-	}
-
 	public static boolean showShiftProgressBar() {
 		final MinecraftClient minecraftClient = MinecraftClient.getInstance();
 		final ClientPlayerEntity clientPlayerEntity = minecraftClient.getPlayerMapped();
