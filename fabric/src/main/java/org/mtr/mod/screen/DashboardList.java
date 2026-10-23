@@ -27,8 +27,7 @@ public class DashboardList implements IGui {
 		this.searchTextConsumer = searchTextConsumer;
 	}
 
-	@SuppressWarnings({"rawtypes", "unchecked"})
-	public void init(Consumer addChild) {
+	public <T> void init(Consumer<T> addChild) {
 	}
 
 	public void tick() {
@@ -44,7 +43,7 @@ public class DashboardList implements IGui {
 		for (int i = scrollOffset; i < Math.min(data.size(), scrollOffset + maxRows); i++) {
 			final DashboardListItem item = data.get(i);
 			final int rowY = y + (i - scrollOffset) * rowHeight;
-			graphicsHolder.drawText(item.name, x + TEXT_PADDING, rowY + TEXT_PADDING, ARGB_WHITE, false);
+			graphicsHolder.drawText(item.name, x + TEXT_PADDING, rowY + TEXT_PADDING, ARGB_WHITE, false, 1);
 		}
 	}
 
