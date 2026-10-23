@@ -76,18 +76,7 @@ public class RenderPSDAPGDoor<T extends BlockPSDAPGDoorBase.BlockEntityBase> ext
 				}
 				break;
 			case 2:
-				if (half) {
-					final Block block = world.getBlockState(blockPos.offset(side ? facing.rotateYClockwise() : facing.rotateYCounterclockwise())).getBlock();
-					if (block.data instanceof BlockAPGGlass || block.data instanceof BlockAPGGlassEnd) {
-						MainRenderer.scheduleRender(new Identifier(String.format("mtr:textures/block/apg_door_light_%s.png", open > 0 ? "on" : "off")), false, open > 0 ? QueuedRenderLayer.LIGHT_TRANSLUCENT : QueuedRenderLayer.EXTERIOR, (graphicsHolderNew, offset) -> {
-							storedMatrixTransformationsLight.transform(graphicsHolderNew, offset);
-							graphicsHolderNew.translate(side ? -0.515625 : 0.515625, 0, 0);
-							graphicsHolderNew.scale(0.5F, 1, 1);
-							MODEL_APG_LIGHT.render(graphicsHolderNew, light, overlay, 1, 1, 1, 1);
-							graphicsHolderNew.pop();
-						});
-					}
-				}
+				// APG glass removed
 				break;
 		}
 

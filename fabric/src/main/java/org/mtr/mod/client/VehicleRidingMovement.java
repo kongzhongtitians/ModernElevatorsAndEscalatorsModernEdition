@@ -73,7 +73,6 @@ public class VehicleRidingMovement {
 			ridingPositionCacheOld = ridingPositionCache;
 		}
 
-		final boolean isHoldingDriverKeyNew = driverKey != null;
 		pressingAccelerateTicks = isHoldingDriverKeyNew && KeyBindings.TRAIN_ACCELERATE.isPressed() ? pressingAccelerateTicks + 1 : 0;
 		pressingBrakeTicks = isHoldingDriverKeyNew && KeyBindings.TRAIN_BRAKE.isPressed() ? pressingBrakeTicks + 1 : 0;
 		pressingDoorsTicks = isHoldingDriverKeyNew && KeyBindings.TRAIN_TOGGLE_DOORS.isPressed() ? pressingDoorsTicks + 1 : 0;
