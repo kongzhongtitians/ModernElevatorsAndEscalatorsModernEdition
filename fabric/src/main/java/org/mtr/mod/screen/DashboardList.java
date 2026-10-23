@@ -27,7 +27,8 @@ public class DashboardList implements IGui {
 		this.searchTextConsumer = searchTextConsumer;
 	}
 
-	public void init(Consumer<?> addChild) {
+	@SuppressWarnings({"rawtypes", "unchecked"})
+	public void init(Consumer addChild) {
 	}
 
 	public void tick() {
