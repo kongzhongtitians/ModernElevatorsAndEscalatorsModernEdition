@@ -140,7 +140,7 @@ public final class MinecraftClientData extends ClientData {
 	}
 
 	public static <T extends NameColorDataBase> ObjectArraySet<DashboardListItem> convertDataSet(ObjectArraySet<T> dataSet) {
-		return dataSet.stream().map(DashboardListItem::new).collect(Collectors.toCollection(ObjectArraySet::new));
+		return dataSet.stream().map(data -> new DashboardListItem(data.getId(), data.getName(), data.getColor())).collect(Collectors.toCollection(ObjectArraySet::new));
 	}
 
 	public static <T extends AreaBase<T, U>, U extends SavedRailBase<U, T>> Object2ObjectAVLTreeMap<Position, ObjectArrayList<U>> getFlatPositionToSavedRails(ObjectArraySet<U> savedRails, TransportMode transportMode) {
