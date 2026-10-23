@@ -7,7 +7,6 @@ import org.mtr.mapping.mapper.BlockWithEntity;
 import org.mtr.mod.BlockEntityTypes;
 import org.mtr.mod.Init;
 import org.mtr.mod.generated.lang.TranslationProvider;
-import org.mtr.mod.packet.PacketDeleteData;
 import org.mtr.mod.packet.PacketOpenBlockEntityScreen;
 
 import javax.annotation.Nonnull;
@@ -36,13 +35,6 @@ public class BlockLiftTrackFloor extends BlockLiftTrackBase implements BlockWith
 	@Override
 	public BlockEntityExtension createBlockEntity(BlockPos blockPos, BlockState blockState) {
 		return new BlockEntity(blockPos, blockState);
-	}
-
-	@Override
-	public void onBreak2(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-		if (!world.isClient()) {
-			PacketDeleteData.sendDirectlyToServerLiftFloorPosition(ServerWorld.cast(world), Init.blockPosToPosition(pos));
-		}
 	}
 
 	@Nonnull
