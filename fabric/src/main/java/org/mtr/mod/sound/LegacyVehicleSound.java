@@ -38,13 +38,9 @@ public class LegacyVehicleSound extends VehicleSoundBase {
 
 	@Override
 	public void playMotorSound(BlockPos blockPos, float speed, float speedChange, float acceleration, boolean isOnRoute) {
-		if (!InitClient.canPlaySound()) {
-			return;
-		}
-
 		if (legacySpeedSoundCount > 0 && legacySpeedSoundBaseResource != null) {
 			final double referenceAcceleration = legacyConstantPlaybackSpeed ? acceleration : Siding.ACCELERATION_DEFAULT;
-			final int floorSpeed = (int) Math.floor(speed / referenceAcceleration / InitClient.MILLIS_PER_SPEED_SOUND);
+			final int floorSpeed = (int) Math.floor(speed / referenceAcceleration / 50);
 			if (floorSpeed > 0) {
 				final Random random = new Random();
 
