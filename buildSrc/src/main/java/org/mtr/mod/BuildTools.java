@@ -175,9 +175,9 @@ public class BuildTools {
 						"\n" +
 						"File name: zh_hk.json\n" +
 						"{\n" +
-						"\t\"gui.mtr.eat\": \"吃\",\n" +
-						"\t\"gui.mtr.ice_cream\": \"麵包\"\n" +
-						"\t\"gui.mtr.banana\": \"蘋果\"\n" +
+						"\t\"gui.mtr.eat\": \"\u5403\",\n" +
+						"\t\"gui.mtr.ice_cream\": \"\u9eb5\u5305\"\n" +
+						"\t\"gui.mtr.banana\": \"\u860b\u679c\"\n" +
 						"}\n" +
 						"\n" +
 						"Example response:\n" +
