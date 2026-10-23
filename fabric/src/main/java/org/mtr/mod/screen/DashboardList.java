@@ -1,9 +1,6 @@
 package org.mtr.mod.screen;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.widget.Widget;
 import org.mtr.libraries.it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import org.mtr.mapping.holder.GraphicsHolder;
 import org.mtr.mapping.mapper.GraphicsHolder;
 import org.mtr.mod.data.IGui;
 
@@ -20,7 +17,6 @@ public class DashboardList implements IGui {
 	private final Consumer<String> searchTextConsumer;
 	private ObjectArrayList<DashboardListItem> data = new ObjectArrayList<>();
 	private int scrollOffset = 0;
-	private Consumer<Widget> addChild;
 
 	public DashboardList(BiConsumer<DashboardListItem, Integer> onPress,
 						 Runnable onAdd, Runnable onRemove, Runnable onEdit, Runnable onSelect,
@@ -31,8 +27,7 @@ public class DashboardList implements IGui {
 		this.searchTextConsumer = searchTextConsumer;
 	}
 
-	public void init(Consumer<Widget> addChild) {
-		this.addChild = addChild;
+	public void init(Consumer<?> addChild) {
 	}
 
 	public void tick() {
@@ -58,15 +53,5 @@ public class DashboardList implements IGui {
 	public boolean mouseScrolled(double mouseX, double mouseY, double amount) {
 		scrollOffset = Math.max(0, scrollOffset - (int) Math.signum(amount));
 		return true;
-	}
-
-	public boolean mouseClicked(double mouseX, double mouseY, int button) {
-		final int rowHeight = SQUARE_SIZE * 2;
-		final int row = (int) ((mouseY - y) / rowHeight) + scrollOffset;
-		if (row >= 0 && row < data.size() && mouseX >= x && mouseX < x + width) {
-			onPress.accept(data.get(row), row);
-			return true;
-		}
-		return false;
 	}
 }
