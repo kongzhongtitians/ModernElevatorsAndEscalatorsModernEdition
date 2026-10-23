@@ -109,9 +109,7 @@ public class MainRenderer extends EntityRenderer<EntityRendering> implements IGu
 		}
 
 		final Vector3d cameraShakeOffset = clientPlayerEntity.getPos().subtract(offset);
-		RenderVehicles.render(millisElapsed, cameraShakeOffset);
 		RenderLifts.render(millisElapsed, cameraShakeOffset);
-		RenderRails.render();
 
 		for (int i = 0; i < TOTAL_RENDER_STAGES; i++) {
 			for (int j = 0; j < QueuedRenderLayer.values().length; j++) {
