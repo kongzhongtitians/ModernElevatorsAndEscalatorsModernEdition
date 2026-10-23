@@ -29,7 +29,7 @@ public abstract class BlockPSDAPGDoorBase extends BlockPSDAPGBase implements Blo
 			if (superState.getBlock().equals(Blocks.getAirMapped())) {
 				return superState;
 			} else {
-				final boolean end = world.getBlockState(pos.offset(IBlock.getSideDirection(state).getOpposite())).getBlock().data instanceof BlockPSDAPGGlassEndBase;
+				final boolean end = false;
 				return superState.with(new Property<>(END.data), end);
 			}
 		}

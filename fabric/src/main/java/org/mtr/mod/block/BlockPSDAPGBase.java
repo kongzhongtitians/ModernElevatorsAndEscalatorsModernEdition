@@ -31,6 +31,6 @@ public abstract class BlockPSDAPGBase extends BlockDirectionalDoubleBlockBase {
 	}
 
 	protected boolean isAPG() {
-		return this instanceof BlockAPGDoor || this instanceof BlockAPGGlass || this instanceof BlockAPGGlassEnd;
+		return false;
 	}
 }
