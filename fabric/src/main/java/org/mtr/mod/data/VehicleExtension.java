@@ -198,8 +198,6 @@ public class VehicleExtension extends Vehicle implements Utilities {
 					}
 				}));
 			}
-
-			DrivingGuiRenderer.setVehicle(this);
 		}
 
 		// Oscillation
