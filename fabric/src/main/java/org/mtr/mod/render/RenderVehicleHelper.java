@@ -6,7 +6,6 @@ import org.mtr.mapping.mapper.GraphicsHolder;
 import org.mtr.mod.Init;
 import org.mtr.mod.Items;
 import org.mtr.mod.block.BlockPSDAPGDoorBase;
-import org.mtr.mod.block.PlatformHelper;
 
 public class RenderVehicleHelper {
 
@@ -42,9 +41,7 @@ public class RenderVehicleHelper {
 					final BlockPos checkPos = Init.newBlockPos(checkX, checkY, checkZ);
 					final BlockState blockState = clientWorld.getBlockState(checkPos);
 					final Block block = blockState.getBlock();
-					if (block.data instanceof PlatformHelper) {
-						canOpenDoors = true;
-					} else if (block.data instanceof BlockPSDAPGDoorBase && blockState.get(new Property<>(BlockPSDAPGDoorBase.UNLOCKED.data))) {
+					if (block.data instanceof BlockPSDAPGDoorBase && blockState.get(new Property<>(BlockPSDAPGDoorBase.UNLOCKED.data))) {
 						canOpenDoors = true;
 						final BlockEntity blockEntity = clientWorld.getBlockEntity(checkPos);
 						if (blockEntity != null && blockEntity.data instanceof BlockPSDAPGDoorBase.BlockEntityBase) {
