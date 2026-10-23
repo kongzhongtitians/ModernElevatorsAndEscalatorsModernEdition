@@ -17,9 +17,6 @@ import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mod.Init;
 import org.mtr.mod.InitClient;
-import org.mtr.mod.block.BlockTrainAnnouncer;
-import org.mtr.mod.block.BlockTrainRedstoneSensor;
-import org.mtr.mod.block.BlockTrainSensorBase;
 import org.mtr.mod.block.IBlock;
 import org.mtr.mod.client.IDrawing;
 import org.mtr.mod.client.MinecraftClientData;
@@ -203,28 +200,6 @@ public class VehicleExtension extends Vehicle implements Utilities {
 			}
 
 			DrivingGuiRenderer.setVehicle(this);
-		}
-
-		// Check for sensors
-		final Vector headPosition = getHeadPosition();
-		for (int xOffset = -1; xOffset <= 1; xOffset++) {
-			for (int yOffset = -1; yOffset <= 1; yOffset++) {
-				for (int zOffset = -1; zOffset <= 1; zOffset++) {
-					final BlockPos offsetBlockPos = Init.newBlockPos(headPosition.x + xOffset, headPosition.y + yOffset, headPosition.z + zOffset);
-					final BlockState blockState = clientWorld.getBlockState(offsetBlockPos);
-					final Block block = blockState.getBlock();
-					if (BlockTrainSensorBase.matchesFilter(new World(clientWorld.data), offsetBlockPos, thisRouteId, speed)) {
-						if (block.data instanceof BlockTrainRedstoneSensor && IBlock.getStatePropertySafe(blockState, BlockTrainRedstoneSensor.POWERED) < 2) {
-							InitClient.REGISTRY_CLIENT.sendPacketToServer(new PacketTurnOnBlockEntity(offsetBlockPos));
-						} else if (block.data instanceof BlockTrainAnnouncer && VehicleRidingMovement.isRiding(id)) {
-							final BlockEntity blockEntity = clientWorld.getBlockEntity(offsetBlockPos);
-							if (blockEntity != null && blockEntity.data instanceof BlockTrainAnnouncer.BlockEntity) {
-								((BlockTrainAnnouncer.BlockEntity) blockEntity.data).announce();
-							}
-						}
-					}
-				}
-			}
 		}
 
 		// Oscillation
