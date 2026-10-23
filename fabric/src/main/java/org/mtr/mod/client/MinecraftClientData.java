@@ -11,7 +11,6 @@ import org.mtr.libraries.it.unimi.dsi.fastutil.objects.*;
 import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.EntityHelper;
 import org.mtr.mod.Init;
-import org.mtr.mod.block.BlockNode;
 import org.mtr.mod.data.PersistentVehicleData;
 import org.mtr.mod.data.VehicleExtension;
 import org.mtr.mod.screen.DashboardListItem;
@@ -80,45 +79,7 @@ public final class MinecraftClientData extends ClientData {
 
 	@Nullable
 	public ObjectObjectImmutablePair<Rail, BlockPos> getFacingRailAndBlockPos(boolean includeCableType) {
-		final MinecraftClient minecraftClient = MinecraftClient.getInstance();
-		final ClientWorld clientWorld = minecraftClient.getWorldMapped();
-		if (clientWorld == null) {
-			return null;
-		}
-
-		final ClientPlayerEntity clientPlayerEntity = minecraftClient.getPlayerMapped();
-		if (clientPlayerEntity == null) {
-			return null;
-		}
-
-		final HitResult hitResult = minecraftClient.getCrosshairTargetMapped();
-		if (hitResult == null) {
-			return null;
-		}
-
-		final Vector3d hitPos = hitResult.getPos();
-		final BlockPos blockPos = Init.newBlockPos(hitPos.getXMapped(), hitPos.getYMapped(), hitPos.getZMapped());
-
-		if (clientWorld.getBlockState(blockPos).getBlock().data instanceof BlockNode) {
-			final float playerAngle = EntityHelper.getYaw(new Entity(clientPlayerEntity.data)) + 90;
-			final Rail[] closestRail = {null};
-			final double[] closestAngle = {720};
-
-			positionsToRail.getOrDefault(Init.blockPosToPosition(blockPos), new Object2ObjectOpenHashMap<>()).forEach((endPosition, rail) -> {
-				if (includeCableType || rail.railMath.getShape() != Rail.Shape.CABLE) {
-					final double angle = Math.abs(Math.toDegrees(Math.atan2(endPosition.getZ() - blockPos.getZ(), endPosition.getX() - blockPos.getX())) - playerAngle) % 360;
-					final double clampedAngle = angle > 180 ? 360 - angle : angle;
-					if (clampedAngle < closestAngle[0]) {
-						closestRail[0] = rail;
-						closestAngle[0] = clampedAngle;
-					}
-				}
-			});
-
-			return closestRail[0] == null ? null : new ObjectObjectImmutablePair<>(closestRail[0], blockPos);
-		} else {
-			return null;
-		}
+		return null;
 	}
 
 	public boolean getRouteIdHasDisabledAnnouncements(long routeId) {
