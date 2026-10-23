@@ -49,7 +49,7 @@ public final class DrivingGuiRenderer {
 
 	public static void render(GraphicsHolder graphicsHolder) {
 		final MinecraftClient minecraftClient = MinecraftClient.getInstance();
-		if (vehicle != null && (minecraftClient.getCurrentScreenMapped() == null || minecraftClient.getCurrentScreenMapped().getTitle().data.toString().contains("chat_screen.title")) && VehicleRidingMovement.getValidHoldingKey(vehicle.vehicleExtraData.getDepotId()) != null) {
+		if (vehicle != null && (minecraftClient.getCurrentScreenMapped() == null || minecraftClient.getCurrentScreenMapped().getTitle().data.toString().contains("chat_screen.title"))) {
 			final VehicleExtraData vehicleExtraData = vehicle.vehicleExtraData;
 			final Window window = minecraftClient.getWindow();
 			final int speedometerX = window.getScaledWidth() - TOOL_SIZE - EDGE_PADDING;
