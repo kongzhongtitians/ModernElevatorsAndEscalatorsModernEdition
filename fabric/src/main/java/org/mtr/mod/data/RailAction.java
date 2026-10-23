@@ -8,7 +8,6 @@ import org.mtr.mapping.holder.*;
 import org.mtr.mapping.mapper.SlabBlockExtension;
 import org.mtr.mapping.mapper.TextHelper;
 import org.mtr.mod.Init;
-import org.mtr.mod.block.BlockNode;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -171,7 +170,7 @@ public class RailAction {
 	}
 
 	private static boolean canPlace(ServerWorld serverWorld, BlockPos pos) {
-		return serverWorld.getBlockEntity(pos) == null && !(serverWorld.getBlockState(pos).getBlock().data instanceof BlockNode);
+		return serverWorld.getBlockEntity(pos) == null;
 	}
 
 	private static BlockPos getHalfPos(BlockPos pos, boolean isTopHalf) {
