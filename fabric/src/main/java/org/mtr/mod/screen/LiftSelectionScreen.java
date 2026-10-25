@@ -52,7 +52,7 @@ public class LiftSelectionScreen extends MTRScreenBase implements IGui {
 		selectionList.y = SQUARE_SIZE;
 		selectionList.width = PANEL_WIDTH * 2;
 		selectionList.height = height - SQUARE_SIZE * 2;
-		selectionList.init();
+		selectionList.init(this::addChild);
 	}
 
 	@Override
@@ -85,6 +85,12 @@ public class LiftSelectionScreen extends MTRScreenBase implements IGui {
 	@Override
 	public void mouseMoved2(double mouseX, double mouseY) {
 		selectionList.mouseMoved(mouseX, mouseY);
+	}
+
+	@Override
+	public boolean mouseClicked2(double mouseX, double mouseY, int button) {
+		selectionList.mouseClicked(mouseX, mouseY, button);
+		return super.mouseClicked2(mouseX, mouseY, button);
 	}
 
 	@Override
