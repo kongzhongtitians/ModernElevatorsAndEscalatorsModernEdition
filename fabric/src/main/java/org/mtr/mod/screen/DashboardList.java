@@ -27,7 +27,7 @@ public class DashboardList implements IGui {
 		this.searchTextConsumer = searchTextConsumer;
 	}
 
-	public <T> void init(Consumer<T> addChild) {
+	public void init() {
 	}
 
 	public void tick() {

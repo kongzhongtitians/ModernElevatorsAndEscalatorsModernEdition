@@ -36,7 +36,7 @@ public class DashboardListSelectorScreen extends MTRScreenBase implements IGui {
 		list.y = SQUARE_SIZE;
 		list.width = PANEL_WIDTH * 2;
 		list.height = height - SQUARE_SIZE * 2;
-		list.init(this::addChild);
+		list.init();
 	}
 
 	@Override
